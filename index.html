@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! ❤️</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        .card-container {
+            perspective: 1000px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .card {
+            width: 320px;
+            height: 420px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(255, 75, 110, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.8s ease;
+            position: relative;
+            border: 2px solid #ff85a1;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .heart-icon {
+            font-size: 60px;
+            color: #ff4b6e;
+            animation: beat 1.2s infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        h1 {
+            color: #ff4b6e;
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #4a4a4a;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+        .btn {
+            background: #ff4b6e;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(255, 75, 110, 0.4);
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #ff758f;
+            transform: scale(1.05);
+        }
+        /* Floating Hearts Layer */
+        .heart-particle {
+            position: absolute;
+            color: #ff4b6e;
+            pointer-events: none;
+            animation: floatUp 4s linear forwards;
+            font-size: 24px;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container" id="birthdayCard">
+        <div class="card">
+            <div class="heart-icon">❤️</div>
+            <!-- Aap yahan unka naam likh sakte hain -->
+            <h1>Happy Birthday, Beautiful! ✨</h1>
+            <p>You make my world a whole lot brighter just by being in it. Wishing you the happiest day ever! 🎂🎈</p>
+            <button class="btn" onclick="celebrate(event)">Click for Surprise! 🎉</button>
+        </div>
+    </div>
+
+    <script>
+        function celebrate(event) {
+            // Stop click from bubbling if necessary
+            event.stopPropagation();
+            
+            // Alert message (Aap isko customize kar sakte hain)
+            setTimeout(() => {
+                alert("Happy Birthday! May all your wishes come true! ❤️✨");
+            }, 500);
+
+            // Create floating hearts
+            for (let i = 0; i < 30; i++) {
+                createHeart();
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            
+            // Random heart shapes
+            const hearts = ['❤️', '💖', '💝', '💕'];
+            heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+            
+            // Random horizontal positioning and animation delay
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            // Random sizing
+            heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+            
+            document.body.appendChild(heart);
+
+            // Remove heart after animation finishes
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+    </script>
+</body>
+</html>
